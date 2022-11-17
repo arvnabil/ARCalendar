@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="no-js" lang="id">
+<head>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/capture.css">
+<style>
+	body {
+		margin: 0
+	}
+	
+	.example-container {
+		overflow: hidden;
+		position: absolute;
+		width: 100%;
+		height: 100%
+	}
+	
+	#example-scanning-overlay {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: 0 0;
+		z-index: 2
+	}
+	
+	@media (min-aspect-ratio:1/1) {
+		#example-scanning-overlay .inner {
+			width: 50vh;
+			height: 50vh
+		}
+	}
+	
+	@media (max-aspect-ratio:1/1) {
+		#example-scanning-overlay .inner {
+			width: 80vw;
+			height: 80vw
+		}
+	}
+	
+	#example-scanning-overlay .inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background: linear-gradient(to right, #fff 10px, transparent 10px) 0 0, linear-gradient(to right, #fff 10px, transparent 10px) 0 100%, linear-gradient(to left, #fff 10px, transparent 10px) 100% 0, linear-gradient(to left, #fff 10px, transparent 10px) 100% 100%, linear-gradient(to bottom, #fff 10px, transparent 10px) 0 0, linear-gradient(to bottom, #fff 10px, transparent 10px) 100% 0, linear-gradient(to top, #fff 10px, transparent 10px) 0 100%, linear-gradient(to top, #fff 10px, transparent 10px) 100% 100%;
+		background-repeat: no-repeat;
+		background-size: 40px 40px
+	}
+	
+	#example-scanning-overlay.hidden {
+		display: none
+	}
+	
+	#example-scanning-overlay-text {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 130px;
+		background: 0 0;
+		z-index: 2
+	}
+	
+	#example-scanning-overlay img {
+		opacity: .6;
+		width: 75%;
+		align-self: center
+	}
+	
+	#example-scanning-overlay .inner .scanline {
+		position: absolute;
+		width: 100%;
+		height: 10px;
+		background: #fff;
+		animation: move 2s linear infinite
+	}
+	
+	@keyframes move {
+		0%,
+		100% {
+			top: 0
+		}
+		50% {
+			top: calc(100% - 10px)
+		}
+	}
+	
+	@font-face {
+		font-family: Gotham;
+		src: url(assets/gotham.otf) format("opentype")
+	}
+</style>
+<script src="assets/aframe-min.js"></script>
+<script src="assets/ar-prod.js"></script>
+<script src="assets/ar-aframe-prod.js"></script>
+<script src="assets/gestures.js"></script>
+<script src="assets/amplitude.js"></script>
+<title>Calendar - ACTiV AR - Forewords</title>
+<!-- <link rel="canonical" href="https://www.bca.co.id/id/Others/kalender-2022/forewords/ar-page" /> -->
+<!-- <link href="https://www.bca.co.id/-/media/Feature/Default-BCA/favicon-bca.png" rel="shortcut icon" /> -->
+<!-- <meta property="og:title"  content="ar-page" /><meta property="og:url"  content="https://www.bca.co.id/id/Others/kalender-2022/forewords/ar-page" /> -->
+<!-- <meta property="twitter:title"  content="ar-page" /><meta property="twitter:card"  content="summary_large_image" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="facebook-domain-verification" content="mi9i5exx283af3pwhay50br2f2o3r2" />
+<!-- <link rel='alternate' hreflang='id' href='https://www.bca.co.id/id/Others/kalender-2022/forewords/ar-page' />
+<link rel='alternate' hreflang='en' href='https://www.bca.co.id/en/Others/kalender-2022/forewords/ar-page' /> -->
+<meta name="data_language" content ="id">
+</head>
+<body class="default-device bodyclass">
+&#8203;
+<html lang="id">
+<head>
+	<title style="font-family:Gotham">ACTiV CALENDAR AR</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+	<div class="example-container">
+		<div id="example-scanning-overlay" class="hidden">
+			<div class="inner"><img src="assets/images/ss.png">
+				<div class="scanline"></div>
+			</div>
+			<div id="example-scanning-overlay-text">
+				<p style="font-family:Gotham;font-size:20px;text-align:center">
+					<mark style="background-color:#006BB9;color:#fff">Arahkan kamera ke kalendar.</mark>
+				</p>
+			</div>
+		</div>
+		<div id="Browser_Alert_Modal" class="Browser_Alert_Modal">
+			<div class="Browser_Alert_Modal_Inner">
+				<p class="Browser_Alert_Modal_Text"><span><font style="vertical-align:inherit"><font style="vertical-align:inherit">Please use a smartphone for best experience</font></font></span></p>
+				<p class="Browser_Alert_Modal_Text"><font style="vertical-align:inherit"><font style="vertical-align:inherit">Supported browsers</font></font>
+					<br><font style="vertical-align:inherit"><font style="vertical-align:inherit">iOS: Safari</font></font>
+					<br><font style="vertical-align:inherit"><font style="vertical-align:inherit">Android: Google Chrome</font></font>
+				</p>
+				<button id="Browser_Alert_Modal_Confirm" class="btn_border Browser_Alert_Modal_Confirm"><font style="vertical-align:inherit"><font style="vertical-align:inherit">OK!</font></font>
+				</button>
+			</div>
+		</div>
+		<div id="Modal_Capture" class="Modal Modal-Capture is-Hidden">
+			<div id="Modal-Container" class="Modal-Container Modal-Container-Capture">
+				<button id="Modal_Close" class="Modal_Close">
+					<img alt="Close icon" src="assets/close.png"></button>
+				<button id="Modal_Button_Save" class="Modal_Button_Item Modal_Button_Item-Capture Modal_Button_Item-Save is-Hidden" disabled><img class="Modal_Button_Item_icon_dl" alt="Download icon" src=""><font style="vertical-align:inherit"><font style="vertical-align:inherit">Save to album</font></font>
+				</button>
+				<div class="Modal-Capture_Flex_Container">
+					<div class="Modal-Capture_Image_Container">
+						<img alt="Photo" id="Modal_Image" class="Modal_Image Modal_Image-Capture">
+						<a id="Preview_Modal_Video_Link">
+							<video id="Preview_Modal_Video" class="Modal_Image Modal_Image-Capture" playsinline webkit-playsinline muted loop></video>
+						</a>
+						<p id="Modal_Text" class="Modal_Text">
+							<font style="vertical-align:inherit">
+								<font style="vertical-align:inherit">Tap and hold to save the photo
+								</font>
+							</font>
+						</p>
+					</div>
+					<div class="Modal_Button">
+						<button id="Modal_Button_audio" class="Modal_Button_Item Modal_Button_Item-Capture Modal_Button_Item-sound is-Hidden"><img id="preview_audio" class="Modal_Button_Item_icon_sound" alt="Audio Icon" src="assets/volume-no.png"></button>
+					</div>
+				</div>
+			</div>
+			<div id="Modal_Background" class="Modal_Background"></div>
+		</div>
+		<ul class="Control_Button">
+			<li id="audioControl" class="Control_Select_List_Stamp is-Hidden">
+				<button id="onSound" class="Control_Button_Item Control_Button_Item-audio"></button>
+			</li>
+			<li id="captureControl" class="Control_Select_List_Button is-Hidden">
+				<button id="Control_Button_Capture" class="Control_Button_Item Control_Button_Item-Capture"></button>
+				<p id="Record_Video_Text" class="Control_Select_Caption" style="display:block">Press and hold to record</p>
+				<div class="progress-pie-chart" style="display:block">
+					<div class="ppc-progress">
+						<div class="ppc-progress-fill"></div>
+					</div>
+					<div class="ppc-percents">
+						<div class="pcc-percents-wrapper"></div>
+					</div>
+				</div>
+			</li>
+			<li class="Control_Select_List_Filter"></li>
+			<li class="Control_Select_List_Txt"></li>
+		</ul>
+		<a-scene gesture-detector loading-screen="dotsColor: #FFFFFF; backgroundColor: #006BB9" mindar-image="imageTargetSrc: assets/maps/targets.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="antialias:true, colorManagement: true, physicallyCorrectLights:true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+			<a-assets>
+				<a-asset-item id="avatarModel" src="assets/models/banana-tree/object-banana-tree.glb"></a-asset-item>
+			</a-assets>
+			<!-- <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera> -->
+			<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+			<a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
+				<a-entity mindar-image-target="targetIndex: 0">
+					<a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+					<a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+				  </a-entity>
+				<a-entity visible id="portfolio-panel" position="0 0 0"> 
+					<a-entity id="portfolio-item0">
+						<a-gltf-model gesture-handler="minScale: 0.25; maxScale: 10;" id="avatar" rotation="0 180 0" position="-0.2 -0.125 0" scale="25 25 25" src="#avatarModel" animation-mixer class="clickable"></a-gltf-model>
+					</a-entity>
+				</a-entity>
+			</a-entity>
+			<a-entity light="type: ambient; color: #FFF; intensity: 0.5"></a-entity>
+			<a-entity light="type: directional; color: #FFF; intensity: 0.5" position="-0.5 1 1"></a-entity>
+		</a-scene>
+	</div>
+</body>
+
+</html>
+	<script src="assets/framework.js"></script>
+	<script>
+	amplitude.getInstance().logEvent("ACTiV Calendar AR - Banana Tree");
+	document.addEventListener("DOMContentLoaded", function() {
+		const sceneEl = document.querySelector('a-scene');
+		const arSystem = sceneEl.systems["mindar-image-system"];
+		const target_0 = document.querySelector("#mytarget")
+		target_0.addEventListener("targetLost", event => {
+			document.querySelector("#example-scanning-overlay").classList.remove("hidden");
+			document.querySelector("#captureControl").classList.add("is-Hidden");
+		})
+	});
+	</script>
+    <!-- /#wrapper -->
+</body>
+</html>
